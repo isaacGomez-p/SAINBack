@@ -13,23 +13,46 @@ public class ResumeEntity {
     @Column(name="resume_id")
     private Integer resumeId;
 
-    @Column(name="name" , length = 200, unique = true)
+    @Column(name="name" , length = 50)
     private String name;
 
-    @Column(name="status", length = 1)
-    private String status;
+    @Column(name="number_id" , length = 200, unique = true)
+    private String numberId;
 
-    @Column(name="priority")
-    private Integer priority;
+    @Column(name="verified")
+    private Boolean verified;
+
+    @Column(name="verification_date")
+    private Date verificationDate;
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private UserEntity userBy;
+
+    @Column(name="recommendation" , length = 200)
+    private String recommendation;
+
+    @Column(name="observation" , length = 200)
+    private String observation;
+
+    @Column(name="process" , length = 20)
+    private String process;
+
+    @Column(name="score")
+    private Integer score;
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private UserEntity userCreate;
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private UserEntity userAssign;
 
     @Column(name="creation_date")
     private Date creationDate;
 
-    @ManyToOne
-    @JoinColumn(name="user_id")
-    private UserEntity user;
-
-    @OneToMany(mappedBy="resumes",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="resumes", fetch = FetchType.LAZY)
     private List<AnswerEntity> answerEntities;
 
     public Integer getResumeId() {
@@ -48,20 +71,84 @@ public class ResumeEntity {
         this.name = name;
     }
 
-    public String getStatus() {
-        return status;
+    public String getNumberId() {
+        return numberId;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setNumberId(String numberId) {
+        this.numberId = numberId;
     }
 
-    public Integer getPriority() {
-        return priority;
+    public Boolean getVerified() {
+        return verified;
     }
 
-    public void setPriority(Integer priority) {
-        this.priority = priority;
+    public void setVerified(Boolean verified) {
+        this.verified = verified;
+    }
+
+    public Date getVerificationDate() {
+        return verificationDate;
+    }
+
+    public void setVerificationDate(Date verificationDate) {
+        this.verificationDate = verificationDate;
+    }
+
+    public UserEntity getUserBy() {
+        return userBy;
+    }
+
+    public void setUserBy(UserEntity userBy) {
+        this.userBy = userBy;
+    }
+
+    public String getRecommendation() {
+        return recommendation;
+    }
+
+    public void setRecommendation(String recommendation) {
+        this.recommendation = recommendation;
+    }
+
+    public String getObservation() {
+        return observation;
+    }
+
+    public void setObservation(String observation) {
+        this.observation = observation;
+    }
+
+    public String getProcess() {
+        return process;
+    }
+
+    public void setProcess(String process) {
+        this.process = process;
+    }
+
+    public Integer getScore() {
+        return score;
+    }
+
+    public void setScore(Integer score) {
+        this.score = score;
+    }
+
+    public UserEntity getUserCreate() {
+        return userCreate;
+    }
+
+    public void setUserCreate(UserEntity userCreate) {
+        this.userCreate = userCreate;
+    }
+
+    public UserEntity getUserAssign() {
+        return userAssign;
+    }
+
+    public void setUserAssign(UserEntity userAssign) {
+        this.userAssign = userAssign;
     }
 
     public Date getCreationDate() {
@@ -70,14 +157,6 @@ public class ResumeEntity {
 
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
-    }
-
-    public UserEntity getUser() {
-        return user;
-    }
-
-    public void setUser(UserEntity user) {
-        this.user = user;
     }
 
     public List<AnswerEntity> getAnswerEntities() {
