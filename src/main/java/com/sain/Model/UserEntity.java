@@ -38,8 +38,14 @@ public class UserEntity implements Serializable {
     @OneToMany(mappedBy="userMod",fetch = FetchType.LAZY)
     private List<AnswerEntity> answerEntities;
 
-    @OneToMany(mappedBy="user",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="userAssign",fetch = FetchType.LAZY)
     private List<ResumeEntity> resumeEntities;
+
+    @OneToMany(mappedBy="userCreate",fetch = FetchType.LAZY)
+    private List<ResumeEntity> resumeEntities1;
+
+    @OneToMany(mappedBy="userBy",fetch = FetchType.LAZY)
+    private List<ResumeEntity> resumeEntities2;
 
     public Integer getUserId() {
         return userId;

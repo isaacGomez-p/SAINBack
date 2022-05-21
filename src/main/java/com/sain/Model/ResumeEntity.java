@@ -26,7 +26,7 @@ public class ResumeEntity {
     private Date verificationDate;
 
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name="user_id_by")
     private UserEntity userBy;
 
     @Column(name="recommendation" , length = 200)
@@ -42,11 +42,11 @@ public class ResumeEntity {
     private Integer score;
 
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name="user_id_create")
     private UserEntity userCreate;
 
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name="user_id_assign")
     private UserEntity userAssign;
 
     @Column(name="creation_date")
