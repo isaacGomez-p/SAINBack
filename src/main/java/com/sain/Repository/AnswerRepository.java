@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface AnswerRepository extends JpaRepository<AnswerEntity, Integer> {
 
-    List<AnswerEntity> findByUser(UserEntity user);
+    List<AnswerEntity> findByUserMod(UserEntity user);
 
 }

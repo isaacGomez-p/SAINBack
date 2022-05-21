@@ -35,8 +35,11 @@ public class UserEntity implements Serializable {
     @Column(name="password" , length = 100)
     private String password;
 
-    @OneToMany(mappedBy="user",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="userMod",fetch = FetchType.LAZY)
     private List<AnswerEntity> answerEntities;
+
+    @OneToMany(mappedBy="user",fetch = FetchType.LAZY)
+    private List<ResumeEntity> resumeEntities;
 
     public Integer getUserId() {
         return userId;
@@ -94,5 +97,21 @@ public class UserEntity implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<AnswerEntity> getAnswerEntities() {
+        return answerEntities;
+    }
+
+    public void setAnswerEntities(List<AnswerEntity> answerEntities) {
+        this.answerEntities = answerEntities;
+    }
+
+    public List<ResumeEntity> getResumeEntities() {
+        return resumeEntities;
+    }
+
+    public void setResumeEntities(List<ResumeEntity> resumeEntities) {
+        this.resumeEntities = resumeEntities;
     }
 }

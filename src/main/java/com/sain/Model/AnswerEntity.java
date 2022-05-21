@@ -24,9 +24,6 @@ public class AnswerEntity {
     @Column(name="creation_date")
     private Date creationDate;
 
-    @Column(name = "status", length = 1)
-    private String status;
-
     //TODO proveedor de la verificacion
     //TODO fecha de la actualizacion
 
@@ -35,8 +32,12 @@ public class AnswerEntity {
     private QuestionsEntity questions;
 
     @ManyToOne
+    @JoinColumn(name="resume_id")
+    private ResumeEntity resumes;
+
+    @ManyToOne
     @JoinColumn(name="user_id")
-    private UserEntity user;
+    private UserEntity userMod;
 
     public Integer getAnswerId() {
         return answerId;
@@ -70,14 +71,6 @@ public class AnswerEntity {
         this.creationDate = creationDate;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     @JsonIgnore
     @JsonProperty(value = "question_id")
     public QuestionsEntity getQuestions() {
@@ -89,12 +82,22 @@ public class AnswerEntity {
     }
 
     @JsonIgnore
-    @JsonProperty(value = "user_id")
-    public UserEntity getUser() {
-        return user;
+    @JsonProperty(value = "resume_id")
+    public ResumeEntity getResumes() {
+        return resumes;
     }
 
-    public void setUser(UserEntity user) {
-        this.user = user;
+    public void setResumes(ResumeEntity resumes) {
+        this.resumes = resumes;
+    }
+
+    @JsonIgnore
+    @JsonProperty(value = "user_id")
+    public UserEntity getUserMod() {
+        return userMod;
+    }
+
+    public void setUserMod(UserEntity userMod) {
+        this.userMod = userMod;
     }
 }
