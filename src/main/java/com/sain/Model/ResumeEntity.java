@@ -52,7 +52,7 @@ public class ResumeEntity {
     @Column(name="creation_date")
     private Date creationDate;
 
-    @OneToMany(mappedBy="resumes", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy="resumes", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<AnswerEntity> answerEntities;
 
     public Integer getResumeId() {

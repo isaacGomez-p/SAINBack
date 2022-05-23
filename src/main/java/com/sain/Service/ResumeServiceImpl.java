@@ -20,7 +20,12 @@ public class ResumeServiceImpl implements ResumeService{
     @Transactional
     public Response save(ResumeEntity resumeEntity) {
         resumeEntity.setCreationDate(new Date());
-        return new Response(HttpStatus.CREATED, resumeRepository.save(resumeEntity));
+        ResumeEntity savedResume = resumeRepository.save(resumeEntity);
+        savedResume.getAnswerEntities().forEach(answerEntity -> {
+            answerEntity.setResumes(savedResume);
+        });
+
+        return new Response(HttpStatus.CREATED, resumeRepository.save(savedResume));
     }
 
     @Transactional(readOnly = true)
