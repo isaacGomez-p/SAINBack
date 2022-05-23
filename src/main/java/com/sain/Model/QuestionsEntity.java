@@ -1,5 +1,8 @@
 package com.sain.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -81,6 +84,8 @@ public class QuestionsEntity {
         this.section = section;
     }
 
+    @JsonIgnore
+    @JsonProperty(value = "answerEntities")
     public List<AnswerEntity> getAnswerEntities() {
         return answerEntities;
     }

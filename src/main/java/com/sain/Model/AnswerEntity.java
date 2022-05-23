@@ -71,8 +71,6 @@ public class AnswerEntity {
         this.creationDate = creationDate;
     }
 
-    @JsonIgnore
-    @JsonProperty(value = "question_id")
     public QuestionsEntity getQuestions() {
         return questions;
     }
