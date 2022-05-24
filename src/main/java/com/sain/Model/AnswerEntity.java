@@ -27,8 +27,8 @@ public class AnswerEntity {
     @Column(name="verified_date")
     private Date verifiedDate;
 
-    @Column(name="result", length = 50)
-    private String result;
+    @Column(name="result")
+    private Boolean result;
 
     //TODO proveedor de la verificacion
     //TODO fecha de la actualizacion
@@ -69,11 +69,11 @@ public class AnswerEntity {
         this.verifiedDate = verifiedDate;
     }
 
-    public String getResult() {
+    public Boolean getResult() {
         return result;
     }
 
-    public void setResult(String result) {
+    public void setResult(Boolean result) {
         this.result = result;
     }
 
