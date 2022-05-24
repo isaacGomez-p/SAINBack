@@ -2,6 +2,7 @@ package com.sain.Controller;
 
 import com.sain.Model.AnswerEntity;
 import com.sain.Model.Response;
+import com.sain.Model.ResumeEntity;
 import com.sain.Model.UserEntity;
 import com.sain.Service.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class AnswerController {
         return this.answerService.save(answerEntity);
     }
 
-    @PostMapping(value = "/findByUser")
-    public Response findByUser(@RequestBody UserEntity userEntity) { return this.answerService.findByUserId(userEntity); }
+    @PostMapping(value = "/findByResume")
+    public Response findBbyResume(@RequestBody ResumeEntity resumeEntity) { return this.answerService.findByResume(resumeEntity); }
 
 }
