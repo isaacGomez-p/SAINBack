@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
         Optional<UserEntity> optional = userRepository.findByEmail(userEntity.getEmail());
         if(optional != null && optional.isPresent()){
             if(confirmCredentials(userEntity.getPassword(), optional.get())){
-                return new Response(HttpStatus.OK, "Login passed!");
+                return new Response(HttpStatus.OK, "Login passed!", optional.get());
             }else{
                 return new Response(HttpStatus.CONFLICT, "Password does not match");
             }
