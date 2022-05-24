@@ -24,6 +24,12 @@ public class AnswerEntity {
     @Column(name="creation_date")
     private Date creationDate;
 
+    @Column(name="verified_date")
+    private Date verifiedDate;
+
+    @Column(name="result", length = 50)
+    private String result;
+
     //TODO proveedor de la verificacion
     //TODO fecha de la actualizacion
 
@@ -53,6 +59,22 @@ public class AnswerEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Date getVerifiedDate() {
+        return verifiedDate;
+    }
+
+    public void setVerifiedDate(Date verifiedDate) {
+        this.verifiedDate = verifiedDate;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 
     public Boolean getVerified() {
