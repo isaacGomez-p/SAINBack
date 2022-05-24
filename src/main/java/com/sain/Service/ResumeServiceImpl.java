@@ -23,6 +23,11 @@ public class ResumeServiceImpl implements ResumeService{
         ResumeEntity savedResume = resumeRepository.save(resumeEntity);
         savedResume.getAnswerEntities().forEach(answerEntity -> {
             answerEntity.setResumes(savedResume);
+            if(answerEntity.getAnswerId() == null){
+                answerEntity.setCreationDate(new Date());
+            }else{
+                answerEntity.setVerifiedDate(new Date());
+            }
         });
 
         return new Response(HttpStatus.CREATED, resumeRepository.save(savedResume));
