@@ -1,5 +1,6 @@
 package com.sain.Service;
 
+import com.sain.Model.RequestEntity;
 import com.sain.Model.Response;
 import com.sain.Model.UserEntity;
 import com.sain.Repository.UserRepository;
@@ -40,6 +41,11 @@ public class UserServiceImpl implements UserService {
         }else{
             return new Response(HttpStatus.NOT_FOUND, "Email does not exist");
         }
+    }
+
+    @Transactional(readOnly = true)
+    public Response findByRole(RequestEntity requestEntity) {
+        return new Response(HttpStatus.OK, "Data found", userRepository.findByRole(requestEntity.getId()));
     }
 
     private boolean confirmCredentials(String password, UserEntity userSaved){

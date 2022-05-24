@@ -1,5 +1,6 @@
 package com.sain.Controller;
 
+import com.sain.Model.RequestEntity;
 import com.sain.Model.Response;
 import com.sain.Model.UserEntity;
 import com.sain.Service.UserService;
@@ -21,5 +22,8 @@ public class UserController {
 
     @PostMapping(value = "/login")
     public Response login(@RequestBody UserEntity userEntity) { return this.userService.login(userEntity); }
+
+    @PostMapping(value = "/findByRole")
+    public Response findByRole(@RequestBody RequestEntity requestEntity) { return this.userService.findByRole(requestEntity); }
 
 }
