@@ -29,4 +29,7 @@ public class ResumeController {
     @PostMapping(value = "/recCount")
     public Response recCount() { return this.resumeService.counters(); }
 
+    @PostMapping(value = "/findAll")
+    public Response findAll() { return this.resumeService.findAll(); }
+
 }
