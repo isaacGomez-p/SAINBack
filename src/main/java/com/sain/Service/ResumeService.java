@@ -8,6 +8,12 @@ public interface ResumeService {
 
     public Response save(ResumeEntity resumeEntity);
 
-    public Response findByUser(UserEntity userEntity);
+    public Response findAll();
+
+    public Response findByUserAssign(UserEntity userEntity);
+
+    public Response findByUserCreate(UserEntity userEntity);
+
+    public Response counters();
 
 }

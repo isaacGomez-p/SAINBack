@@ -20,7 +20,7 @@ public class ResumeEntity {
     private String numberId;
 
     @Column(name="verified")
-    private Boolean verified;
+    private Integer verified;
 
     @Column(name="verification_date")
     private Date verificationDate;
@@ -52,7 +52,7 @@ public class ResumeEntity {
     @Column(name="creation_date")
     private Date creationDate;
 
-    @OneToMany(mappedBy="resumes", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy="resumes", cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     private List<AnswerEntity> answerEntities;
 
     public Integer getResumeId() {
@@ -79,11 +79,11 @@ public class ResumeEntity {
         this.numberId = numberId;
     }
 
-    public Boolean getVerified() {
+    public Integer getVerified() {
         return verified;
     }
 
-    public void setVerified(Boolean verified) {
+    public void setVerified(Integer verified) {
         this.verified = verified;
     }
 

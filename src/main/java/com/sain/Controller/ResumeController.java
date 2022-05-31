@@ -20,7 +20,13 @@ public class ResumeController {
         return this.resumeService.save(resumeEntity);
     }
 
-    @PostMapping(value = "/findByUser")
-    public Response findByUser(@RequestBody UserEntity userEntity) { return this.resumeService.findByUser(userEntity); }
+    @PostMapping(value = "/findByUserAssign")
+    public Response findByUserAssign(@RequestBody UserEntity userEntity) { return this.resumeService.findByUserAssign(userEntity); }
+
+    @PostMapping(value = "/findByUserCreate")
+    public Response findByUserCreate(@RequestBody UserEntity userEntity) { return this.resumeService.findByUserCreate(userEntity); }
+
+    @PostMapping(value = "/recCount")
+    public Response recCount() { return this.resumeService.counters(); }
 
 }
