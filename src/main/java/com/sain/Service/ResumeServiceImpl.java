@@ -53,7 +53,6 @@ public class ResumeServiceImpl implements ResumeService{
                     answerEntity.setCreationDate(new Date());
                     answerRepository.save(answerEntity);
                 }
-
             });
         }
         return new Response(HttpStatus.CREATED, savedResume);
