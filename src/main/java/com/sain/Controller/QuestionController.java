@@ -16,6 +16,6 @@ public class QuestionController {
     private QuestionsService questionsService;
 
     @PostMapping(value = "/findAll")
-    public Response findAll(@RequestBody RequestEntity requestEntity) { return new Response(HttpStatus.OK, questionsService.findAll(requestEntity)); }
+    public Response findAll(@RequestBody RequestEntity requestEntity) { return questionsService.findAll(requestEntity); }
 
 }

@@ -2,6 +2,7 @@ package com.sain.Model;
 
 import org.springframework.http.HttpStatus;
 
+
 public class Response {
 
     private int status;

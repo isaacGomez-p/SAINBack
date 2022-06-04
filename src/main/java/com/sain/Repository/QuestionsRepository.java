@@ -11,6 +11,6 @@ import java.util.Set;
 @Repository
 public interface QuestionsRepository extends JpaRepository<QuestionsEntity, Integer> {
 
-    List<QuestionsEntity> findBySectionAndRolesIn(Integer section, Set<RoleEntity> roleEntitySet);
+    List<QuestionsEntity> findByRolesIn(Set<RoleEntity> roleEntitySet);
 
 }

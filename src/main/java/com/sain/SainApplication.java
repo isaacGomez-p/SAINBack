@@ -11,9 +11,8 @@ import org.springframework.context.annotation.PropertySources;
 @EnableCaching
 @EnableEncryptableProperties
 @PropertySources({
-		@PropertySource(value =
-				"file:C:\\Users\\isaac\\Documents\\Sain-config\\application.properties",
-				//@PropertySource(value = "file:D:\\Trabajo\\APIBase\\AppProperties\\application.properties",
+		//@PropertySource(value ="file:C:\\Users\\isaac\\Documents\\Sain-config\\application.properties",
+		@PropertySource(value = "file:D:\\Trabajo\\HojasDeVidaBack\\Application\\application.properties",
 				ignoreResourceNotFound = true)
 })
 public class SainApplication {

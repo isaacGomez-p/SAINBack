@@ -25,7 +25,7 @@ public class QuestionServiceImpl implements QuestionsService{
     public Response findAll(RequestEntity requestEntity) {
     Set<RoleEntity> roleEntitySet = new HashSet<>();
     roleEntitySet.add(roleRepository.findById(Integer.parseInt(requestEntity.getData())).get());
-    List<QuestionsEntity> questionsEntityList = questionsRepository.findBySectionAndRolesIn(requestEntity.getId(), roleEntitySet);
+    List<QuestionsEntity> questionsEntityList = questionsRepository.findByRolesIn(roleEntitySet);
     if(questionsEntityList.isEmpty())
         return new Response(HttpStatus.NO_CONTENT, "No Data Found!", null);
     else
