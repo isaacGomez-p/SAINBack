@@ -30,9 +30,6 @@ public class AnswerEntity {
     @Column(name="result")
     private Boolean result;
 
-    //TODO proveedor de la verificacion
-    //TODO fecha de la actualizacion
-
     @ManyToOne
     @JoinColumn(name="question_id")
     private QuestionsEntity questions;

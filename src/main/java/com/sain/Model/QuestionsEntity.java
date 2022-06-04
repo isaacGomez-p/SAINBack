@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "questions")
@@ -35,6 +36,10 @@ public class QuestionsEntity {
 
     @OneToMany(mappedBy="questions",fetch = FetchType.LAZY)
     private List<AnswerEntity> answerEntities;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "question_roles", joinColumns = @JoinColumn(name = "question_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<RoleEntity> roles;
 
     public Integer getQuestionId() {
         return questionId;
@@ -100,5 +105,13 @@ public class QuestionsEntity {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Set<RoleEntity> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<RoleEntity> roles) {
+        this.roles = roles;
     }
 }
