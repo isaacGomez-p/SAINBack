@@ -23,7 +23,7 @@ public class UserEntity implements Serializable {
     private String lastname;
 
     @Column(name="role")
-    private Integer role;
+    private String role;
 
     @Column(name="identification" , length = 20, unique = true)
     private String identification;
@@ -47,8 +47,8 @@ public class UserEntity implements Serializable {
     @OneToMany(mappedBy="userBy",fetch = FetchType.LAZY)
     private List<ResumeEntity> resumeEntities2;
 
-    @OneToOne(mappedBy = "user")
-    private RoleEntity roleEntity;
+    /*@OneToOne(mappedBy = "user")
+    private RoleEntity roleEntity;*/
 
     public Integer getUserId() {
         return userId;
@@ -74,11 +74,11 @@ public class UserEntity implements Serializable {
         this.lastname = lastname;
     }
 
-    public Integer getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Integer role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
@@ -148,11 +148,11 @@ public class UserEntity implements Serializable {
         this.resumeEntities2 = resumeEntities2;
     }
 
-    public RoleEntity getRoleEntity() {
+    /*public RoleEntity getRoleEntity() {
         return roleEntity;
     }
 
     public void setRoleEntity(RoleEntity roleEntity) {
         this.roleEntity = roleEntity;
-    }
+    }*/
 }

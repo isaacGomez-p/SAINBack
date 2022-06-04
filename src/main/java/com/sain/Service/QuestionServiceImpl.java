@@ -2,6 +2,7 @@ package com.sain.Service;
 
 import com.sain.Model.*;
 import com.sain.Repository.QuestionsRepository;
+import com.sain.Repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -17,11 +18,14 @@ public class QuestionServiceImpl implements QuestionsService{
     @Autowired
     private QuestionsRepository questionsRepository;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
     @Transactional(readOnly = true)
     public Response findAll(RequestEntity requestEntity) {
     Set<RoleEntity> roleEntitySet = new HashSet<>();
     roleEntitySet.add(getRoleName(requestEntity.getData()));
-    List<QuestionsEntity> questionsEntityList = questionsRepository.findBySectionAndRoles(requestEntity.getId(), roleEntitySet);
+    List<QuestionsEntity> questionsEntityList = questionsRepository.findBySectionAndRolesIn(requestEntity.getId(), roleEntitySet);
     if(questionsEntityList.isEmpty())
         return new Response(HttpStatus.NO_CONTENT, "No Data Found!", null);
     else
@@ -32,13 +36,13 @@ public class QuestionServiceImpl implements QuestionsService{
         RoleEntity roleEntity = new RoleEntity();
         switch (data){
             case "ADMIN":
-                roleEntity.setName(Roles.ADMIN);
+                roleEntity = roleRepository.findByName(Roles.ADMIN);
                 break;
             case "CLIENTE":
-                roleEntity.setName(Roles.CLIENTE);
+                roleEntity = roleRepository.findByName(Roles.CLIENTE);
                 break;
             case "PROVEEDOR":
-                roleEntity.setName(Roles.PROVEEDOR);
+                roleEntity = roleRepository.findByName(Roles.PROVEEDOR);
                 break;
         }
         return roleEntity;

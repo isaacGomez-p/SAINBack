@@ -41,10 +41,10 @@ INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question
 INSERT INTO public.users(email, identification, lastname, name, password, role)
 	VALUES ('admin@email.com', '123456789', 'Gomez', 'Armando', 'zFSnAAGxGMc1zGU29apWrQ==', 'ADMIN');
 INSERT INTO public.users(email, identification, lastname, name, password, role)
-    VALUES ('cliente@email.com', '1234567890', 'Prieto', 'Carlos', 'zFSnAAGxGMc1zGU29apWrQ==', 2);
+    VALUES ('cliente@email.com', '1234567890', 'Prieto', 'Carlos', 'zFSnAAGxGMc1zGU29apWrQ==', 'CLIENTE');
 INSERT INTO public.users(email, identification, lastname, name, password, role)
-    VALUES ('proveedor@email.com', '1234567891', 'Gonzales', 'Pedro', 'zFSnAAGxGMc1zGU29apWrQ==', 3);
+    VALUES ('proveedor@email.com', '1234567891', 'Gonzales', 'Pedro', 'zFSnAAGxGMc1zGU29apWrQ==', 'PROVEEDOR');
 INSERT INTO public.users(email, identification, lastname, name, password, role)
-    VALUES ('proveedor1@email.com', '1234567892', 'Fernandez', 'Camila', 'zFSnAAGxGMc1zGU29apWrQ==', 3);
+    VALUES ('proveedor1@email.com', '1234567892', 'Fernandez', 'Camila', 'zFSnAAGxGMc1zGU29apWrQ==', 'PROVEEDOR');
 INSERT INTO public.users(email, identification, lastname, name, password, role)
-    VALUES ('proveedor2@email.com', '1234567893', 'Rojas', 'Alejandro', 'zFSnAAGxGMc1zGU29apWrQ==', 3);
+    VALUES ('proveedor2@email.com', '1234567893', 'Rojas', 'Alejandro', 'zFSnAAGxGMc1zGU29apWrQ==', 'PROVEEDOR');

@@ -17,9 +17,9 @@ public class RoleEntity {
     @Column(name = "name")
     private Roles name;
 
-    @OneToOne(targetEntity = UserEntity.class, fetch = FetchType.EAGER)
+    /*@OneToOne(targetEntity = UserEntity.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "user_id")
-    private UserEntity user;
+    private UserEntity user;*/
 
     public long getRoleId() {
         return roleId;
@@ -37,11 +37,11 @@ public class RoleEntity {
         this.name = name;
     }
 
-    public UserEntity getUser() {
+    /*public UserEntity getUser() {
         return user;
     }
 
     public void setUser(UserEntity user) {
         this.user = user;
-    }
+    }*/
 }
