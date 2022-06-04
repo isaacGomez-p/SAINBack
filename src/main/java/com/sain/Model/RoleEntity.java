@@ -1,8 +1,9 @@
 package com.sain.Model;
 
-import org.apache.catalina.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "role")
@@ -11,21 +12,24 @@ public class RoleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "role_id")
-    private long roleId;
+    private Integer roleId;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "name")
     private Roles name;
 
+    @OneToMany(mappedBy = "role")
+    private List<UserEntity> userEntities;
+
     /*@OneToOne(targetEntity = UserEntity.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "user_id")
     private UserEntity user;*/
 
-    public long getRoleId() {
+    public Integer getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(long roleId) {
+    public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
 
@@ -44,4 +48,13 @@ public class RoleEntity {
     public void setUser(UserEntity user) {
         this.user = user;
     }*/
+
+    public List<UserEntity> getUserEntities() {
+        return userEntities;
+    }
+
+    @JsonIgnore
+    public void setUserEntities(List<UserEntity> userEntities) {
+        this.userEntities = userEntities;
+    }
 }

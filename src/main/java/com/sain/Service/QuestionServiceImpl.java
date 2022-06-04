@@ -24,27 +24,11 @@ public class QuestionServiceImpl implements QuestionsService{
     @Transactional(readOnly = true)
     public Response findAll(RequestEntity requestEntity) {
     Set<RoleEntity> roleEntitySet = new HashSet<>();
-    roleEntitySet.add(getRoleName(requestEntity.getData()));
+    roleEntitySet.add(roleRepository.findById(Integer.parseInt(requestEntity.getData())).get());
     List<QuestionsEntity> questionsEntityList = questionsRepository.findBySectionAndRolesIn(requestEntity.getId(), roleEntitySet);
     if(questionsEntityList.isEmpty())
         return new Response(HttpStatus.NO_CONTENT, "No Data Found!", null);
     else
         return new Response(HttpStatus.OK, "Data Found!", questionsEntityList);
-    }
-
-    private RoleEntity getRoleName(String data){
-        RoleEntity roleEntity = new RoleEntity();
-        switch (data){
-            case "ADMIN":
-                roleEntity = roleRepository.findByName(Roles.ADMIN);
-                break;
-            case "CLIENTE":
-                roleEntity = roleRepository.findByName(Roles.CLIENTE);
-                break;
-            case "PROVEEDOR":
-                roleEntity = roleRepository.findByName(Roles.PROVEEDOR);
-                break;
-        }
-        return roleEntity;
     }
 }

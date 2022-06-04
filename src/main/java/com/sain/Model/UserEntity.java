@@ -47,6 +47,10 @@ public class UserEntity implements Serializable {
     @OneToMany(mappedBy="userBy",fetch = FetchType.LAZY)
     private List<ResumeEntity> resumeEntities2;
 
+    @ManyToOne
+    @JoinColumn(name = "role_id", nullable = false)
+    private RoleEntity roleEntity;
+
     /*@OneToOne(mappedBy = "user")
     private RoleEntity roleEntity;*/
 
@@ -146,6 +150,14 @@ public class UserEntity implements Serializable {
 
     public void setResumeEntities2(List<ResumeEntity> resumeEntities2) {
         this.resumeEntities2 = resumeEntities2;
+    }
+
+    public RoleEntity getRoleEntity() {
+        return roleEntity;
+    }
+
+    public void setRoleEntity(RoleEntity roleEntity) {
+        this.roleEntity = roleEntity;
     }
 
     /*public RoleEntity getRoleEntity() {
