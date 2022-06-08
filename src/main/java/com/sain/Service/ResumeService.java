@@ -1,5 +1,6 @@
 package com.sain.Service;
 
+import com.sain.Model.RequestEntity;
 import com.sain.Model.Response;
 import com.sain.Model.ResumeEntity;
 import com.sain.Model.UserEntity;
@@ -14,6 +15,6 @@ public interface ResumeService {
 
     public Response findByUserCreate(UserEntity userEntity);
 
-    public Response counters();
+    public Response counters(RequestEntity requestEntity);
 
 }

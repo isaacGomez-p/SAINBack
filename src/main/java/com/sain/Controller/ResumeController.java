@@ -1,5 +1,6 @@
 package com.sain.Controller;
 
+import com.sain.Model.RequestEntity;
 import com.sain.Model.Response;
 import com.sain.Model.ResumeEntity;
 import com.sain.Model.UserEntity;
@@ -27,7 +28,7 @@ public class ResumeController {
     public Response findByUserCreate(@RequestBody UserEntity userEntity) { return this.resumeService.findByUserCreate(userEntity); }
 
     @PostMapping(value = "/recCount")
-    public Response recCount() { return this.resumeService.counters(); }
+    public Response recCount(@RequestBody RequestEntity requestEntity) { return this.resumeService.counters(requestEntity); }
 
     @PostMapping(value = "/findAll")
     public Response findAll() { return this.resumeService.findAll(); }

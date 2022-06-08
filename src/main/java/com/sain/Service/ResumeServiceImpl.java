@@ -1,9 +1,6 @@
 package com.sain.Service;
 
-import com.sain.Model.AnswerEntity;
-import com.sain.Model.Response;
-import com.sain.Model.ResumeEntity;
-import com.sain.Model.UserEntity;
+import com.sain.Model.*;
 import com.sain.Repository.AnswerRepository;
 import com.sain.Repository.QuestionsRepository;
 import com.sain.Repository.ResumeRepository;
@@ -31,10 +28,14 @@ public class ResumeServiceImpl implements ResumeService{
     @Autowired
     private QuestionsRepository questionsRepository;
 
+    private static final String USER_ASSIGN = "userAssign";
+    private static final String USER_CREATE = "userCreate";
+    private static final String ADMIN = "admin";
+
     @Transactional
     public Response save(ResumeEntity resumeEntity) {
         resumeEntity.setCreationDate(new Date());
-        resumeEntity.setRecommendation(Constants.REC_WAITING);
+        resumeEntity.setRecommendation(Constants.REC_REGISTERED);
         ResumeEntity savedResume = resumeRepository.save(resumeEntity);
         if(resumeEntity.getAnswerEntities() != null && !resumeEntity.getAnswerEntities().isEmpty()){
             resumeEntity.getAnswerEntities().forEach(answerEntity -> {
@@ -74,12 +75,29 @@ public class ResumeServiceImpl implements ResumeService{
     }
 
     @Transactional(readOnly = true)
-    public Response counters() {
+    public Response counters(RequestEntity requestEntity) {
         List<Long> list = new ArrayList<>();
-
-        list.add(resumeRepository.findByRecommendation(Constants.REC_WAITING));
-        list.add(resumeRepository.findByRecommendation(Constants.REC_PROCESSING));
-        list.add(resumeRepository.findByRecommendation(Constants.REC_FINISHED));
+        if(requestEntity.getData().equals(USER_ASSIGN)){
+            list.add(resumeRepository.findByRecommendationAndUserAssignId(Constants.REC_REGISTERED, requestEntity.getId()) == null ? 0 : resumeRepository.findByRecommendationAndUserAssignId(Constants.REC_REGISTERED, requestEntity.getId()));
+            list.add(resumeRepository.findByRecommendationAndUserAssignId(Constants.REC_WAITING, requestEntity.getId()) == null ? 0 : resumeRepository.findByRecommendationAndUserAssignId(Constants.REC_WAITING, requestEntity.getId()));
+            list.add(resumeRepository.findByRecommendationAndUserAssignId(Constants.REC_PROCESSING, requestEntity.getId()) == null ? 0 : resumeRepository.findByRecommendationAndUserAssignId(Constants.REC_PROCESSING, requestEntity.getId()));
+            list.add(resumeRepository.findByRecommendationAndUserAssignId(Constants.REC_CHECKED, requestEntity.getId()) == null ? 0 : resumeRepository.findByRecommendationAndUserAssignId(Constants.REC_CHECKED, requestEntity.getId()));
+            list.add(resumeRepository.findByRecommendationAndUserAssignId(Constants.REC_FINISHED, requestEntity.getId()) == null ? 0 : resumeRepository.findByRecommendationAndUserAssignId(Constants.REC_FINISHED, requestEntity.getId()));
+        }
+        if(requestEntity.getData().equals(USER_CREATE)){
+            list.add(resumeRepository.findByRecommendationAndUserCreateId(Constants.REC_REGISTERED, requestEntity.getId()) == null ? 0 : resumeRepository.findByRecommendationAndUserCreateId(Constants.REC_REGISTERED, requestEntity.getId()));
+            list.add(resumeRepository.findByRecommendationAndUserCreateId(Constants.REC_WAITING, requestEntity.getId()) == null ? 0 : resumeRepository.findByRecommendationAndUserCreateId(Constants.REC_WAITING, requestEntity.getId()));
+            list.add(resumeRepository.findByRecommendationAndUserCreateId(Constants.REC_PROCESSING, requestEntity.getId()) == null ? 0 : resumeRepository.findByRecommendationAndUserCreateId(Constants.REC_PROCESSING, requestEntity.getId()));
+            list.add(resumeRepository.findByRecommendationAndUserCreateId(Constants.REC_CHECKED, requestEntity.getId()) == null ? 0 : resumeRepository.findByRecommendationAndUserCreateId(Constants.REC_CHECKED, requestEntity.getId()));
+            list.add(resumeRepository.findByRecommendationAndUserCreateId(Constants.REC_FINISHED, requestEntity.getId()) == null ? 0 : resumeRepository.findByRecommendationAndUserCreateId(Constants.REC_FINISHED, requestEntity.getId()));
+        }
+        if(requestEntity.getData().equals(ADMIN)){
+            list.add(resumeRepository.findByRecommendation(Constants.REC_REGISTERED) == null ? 0 : resumeRepository.findByRecommendation(Constants.REC_REGISTERED));
+            list.add(resumeRepository.findByRecommendation(Constants.REC_WAITING) == null ? 0 : resumeRepository.findByRecommendation(Constants.REC_WAITING));
+            list.add(resumeRepository.findByRecommendation(Constants.REC_PROCESSING) == null ? 0 : resumeRepository.findByRecommendation(Constants.REC_PROCESSING));
+            list.add(resumeRepository.findByRecommendation(Constants.REC_CHECKED) == null ? 0 : resumeRepository.findByRecommendation(Constants.REC_CHECKED));
+            list.add(resumeRepository.findByRecommendation(Constants.REC_FINISHED) == null ? 0 : resumeRepository.findByRecommendation(Constants.REC_FINISHED));
+        }
         return new Response(HttpStatus.OK, list);
     }
 

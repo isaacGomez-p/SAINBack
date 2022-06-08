@@ -32,7 +32,7 @@ public class ResumeEntity {
     @Column(name="recommendation" , length = 200)
     private String recommendation;
 
-    @Column(name="observation" , length = 200)
+    @Column(name="observation")
     private String observation;
 
     @Column(name="process" , length = 20)
