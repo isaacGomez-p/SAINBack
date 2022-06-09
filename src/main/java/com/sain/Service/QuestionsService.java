@@ -7,4 +7,6 @@ public interface QuestionsService {
 
     public Response findAll(RequestEntity requestEntity);
 
+    public Response getCount();
+
 }
