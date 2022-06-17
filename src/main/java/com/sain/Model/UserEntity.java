@@ -22,9 +22,6 @@ public class UserEntity implements Serializable {
     @Column(name="lastname" , length = 60)
     private String lastname;
 
-    @Column(name="role")
-    private String role;
-
     @Column(name="identification" , length = 20, unique = true)
     private String identification;
 
@@ -76,14 +73,6 @@ public class UserEntity implements Serializable {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 
     public String getIdentification() {

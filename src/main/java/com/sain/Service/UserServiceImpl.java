@@ -2,7 +2,9 @@ package com.sain.Service;
 
 import com.sain.Model.RequestEntity;
 import com.sain.Model.Response;
+import com.sain.Model.RoleEntity;
 import com.sain.Model.UserEntity;
+import com.sain.Repository.RoleRepository;
 import com.sain.Repository.UserRepository;
 import com.sain.Utils.EncryptDecryptPwd;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Transactional
     public Response save(UserEntity userEntity) {
@@ -45,7 +50,8 @@ public class UserServiceImpl implements UserService {
 
     @Transactional(readOnly = true)
     public Response findByRole(RequestEntity requestEntity) {
-        return new Response(HttpStatus.OK, "Data found", userRepository.findByRole(requestEntity.getId()));
+        RoleEntity roleEntity = roleRepository.findById(requestEntity.getId()).get();
+        return new Response(HttpStatus.OK, "Data found", userRepository.findByRoleEntity(roleEntity));
     }
 
     private boolean confirmCredentials(String password, UserEntity userSaved){

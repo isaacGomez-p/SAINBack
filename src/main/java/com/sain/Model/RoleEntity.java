@@ -18,7 +18,7 @@ public class RoleEntity {
     @Column(name = "name")
     private Roles name;
 
-    @OneToMany(mappedBy = "role")
+    @OneToMany(mappedBy = "roleEntity")
     private List<UserEntity> userEntities;
 
     /*@OneToOne(targetEntity = UserEntity.class, fetch = FetchType.EAGER)
