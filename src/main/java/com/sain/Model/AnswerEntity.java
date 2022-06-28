@@ -18,6 +18,9 @@ public class AnswerEntity {
     @Column(name="description" , length = 200)
     private String description;
 
+    @Column(name="observation" , length = 200)
+    private String observation;
+
     @Column(name="verified")
     private Boolean verified;
 
@@ -64,6 +67,14 @@ public class AnswerEntity {
 
     public void setVerifiedDate(Date verifiedDate) {
         this.verifiedDate = verifiedDate;
+    }
+
+    public String getObservation() {
+        return observation;
+    }
+
+    public void setObservation(String observation) {
+        this.observation = observation;
     }
 
     public Boolean getResult() {

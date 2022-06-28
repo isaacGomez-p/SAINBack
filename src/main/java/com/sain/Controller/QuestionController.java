@@ -4,7 +4,6 @@ import com.sain.Model.RequestEntity;
 import com.sain.Model.Response;
 import com.sain.Service.QuestionsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

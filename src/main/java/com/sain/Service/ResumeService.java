@@ -17,4 +17,6 @@ public interface ResumeService {
 
     public Response counters(RequestEntity requestEntity);
 
+    public Response delete(RequestEntity requestEntity);
+
 }

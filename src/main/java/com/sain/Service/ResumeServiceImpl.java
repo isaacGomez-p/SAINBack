@@ -101,6 +101,12 @@ public class ResumeServiceImpl implements ResumeService{
         return new Response(HttpStatus.OK, list);
     }
 
+    @Transactional
+    public Response delete(RequestEntity requestEntity) {
+        resumeRepository.deleteById(requestEntity.getId());
+        return new Response(HttpStatus.NO_CONTENT, "Resume Deleted");
+    }
+
     private List<ResumeEntity> updateVerifiedAnswers(List<ResumeEntity> resumeEntityList){
         long questionsCount = questionsRepository.count();
         if(resumeEntityList != null && !resumeEntityList.isEmpty()){

@@ -32,8 +32,11 @@ public class ResumeEntity {
     @Column(name="recommendation" , length = 200)
     private String recommendation;
 
-    @Column(name="observation")
-    private String observation;
+    @Column(name="prov_observation")
+    private String provObservation;
+
+    @Column(name="admin_observation")
+    private String adminObservation;
 
     @Column(name="process" , length = 20)
     private String process;
@@ -111,12 +114,20 @@ public class ResumeEntity {
         this.recommendation = recommendation;
     }
 
-    public String getObservation() {
-        return observation;
+    public String getProvObservation() {
+        return provObservation;
     }
 
-    public void setObservation(String observation) {
-        this.observation = observation;
+    public void setProvObservation(String provObservation) {
+        this.provObservation = provObservation;
+    }
+
+    public String getAdminObservation() {
+        return adminObservation;
+    }
+
+    public void setAdminObservation(String adminObservation) {
+        this.adminObservation = adminObservation;
     }
 
     public String getProcess() {
