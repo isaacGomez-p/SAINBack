@@ -33,4 +33,7 @@ public class ResumeController {
     @PostMapping(value = "/findAll")
     public Response findAll() { return this.resumeService.findAll(); }
 
+    @PostMapping(value = "/delete")
+    public Response delete(@RequestBody RequestEntity requestEntity) { return this.resumeService.delete(requestEntity); }
+
 }
