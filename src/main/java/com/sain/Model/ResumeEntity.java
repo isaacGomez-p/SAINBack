@@ -38,8 +38,11 @@ public class ResumeEntity {
     @JoinColumn(name="user_id_by")
     private UserEntity userBy;
 
-    @Column(name="recommendation" , length = 200)
+    @Column(name="recommendation" , length = 1)
     private String recommendation;
+
+    @Column(name="status" , length = 200)
+    private String status;
 
     @Column(name="prov_observation")
     private String provObservation;
@@ -198,5 +201,13 @@ public class ResumeEntity {
 
     public void setAnswerEntities(List<AnswerEntity> answerEntities) {
         this.answerEntities = answerEntities;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

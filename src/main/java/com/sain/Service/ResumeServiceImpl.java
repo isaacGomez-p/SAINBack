@@ -36,6 +36,10 @@ public class ResumeServiceImpl implements ResumeService{
     public Response save(ResumeEntity resumeEntity) {
         resumeEntity.setCreationDate(new Date());
         resumeEntity.setRecommendation(Constants.REC_REGISTERED);
+        if(resumeEntity.getStatus() != null && !resumeEntity.getStatus().equals("")
+                && resumeEntity.getAdminObservation() != null && !resumeEntity.getAdminObservation().equals("")){
+            resumeEntity.setRecommendation(Constants.REC_FINISHED);
+        }
         ResumeEntity savedResume = resumeRepository.save(resumeEntity);
         if(resumeEntity.getAnswerEntities() != null && !resumeEntity.getAnswerEntities().isEmpty()){
             resumeEntity.getAnswerEntities().forEach(answerEntity -> {
@@ -56,6 +60,7 @@ public class ResumeServiceImpl implements ResumeService{
                 }
             });
         }
+
         return new Response(HttpStatus.CREATED, savedResume);
     }
 
@@ -117,14 +122,16 @@ public class ResumeServiceImpl implements ResumeService{
                         count.getAndIncrement();
                     }
                 });
-                if(count.get() == questionsCount){
-                    resumeEntity.setRecommendation(Constants.REC_FINISHED);
-                }else if(count.get() > 0 && count.get() < questionsCount){
-                    resumeEntity.setRecommendation(Constants.REC_PROCESSING);
-                } else {
-                    resumeEntity.setRecommendation(Constants.REC_WAITING);
+                if(resumeEntity.getRecommendation() != null && !resumeEntity.getRecommendation().equals(Constants.REC_FINISHED)){
+                    if(count.get() == questionsCount){
+                        resumeEntity.setRecommendation(Constants.REC_CHECKED);
+                    }else if(count.get() > 0 && count.get() < questionsCount){
+                        resumeEntity.setRecommendation(Constants.REC_PROCESSING);
+                    } else {
+                        resumeEntity.setRecommendation(Constants.REC_WAITING);
+                    }
+                    resumeEntity.setVerified(count.get());
                 }
-                resumeEntity.setVerified(count.get());
             });
             resumeEntityList = resumeRepository.saveAll(resumeEntityList);
         }
