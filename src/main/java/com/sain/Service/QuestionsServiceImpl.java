@@ -31,4 +31,9 @@ public class QuestionsServiceImpl implements QuestionsService {
     else
         return new Response(HttpStatus.OK, "Data Found!", questionsEntityList);
     }
+
+    @Transactional(readOnly = true)
+    public Response getCount() {
+        return new Response(HttpStatus.OK, questionsRepository.findAll().size());
+    }
 }

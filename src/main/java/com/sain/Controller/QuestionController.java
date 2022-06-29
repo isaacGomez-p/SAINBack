@@ -17,4 +17,7 @@ public class QuestionController {
     @PostMapping(value = "/findAll")
     public Response findAll(@RequestBody RequestEntity requestEntity) { return questionsService.findAll(requestEntity); }
 
+    @PostMapping(value = "/getCount")
+    public Response getCount() { return questionsService.getCount(); }
+
 }
