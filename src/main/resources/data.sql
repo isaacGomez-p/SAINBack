@@ -20,15 +20,6 @@ INSERT INTO public.questions( description, height, priority, section, status, ty
 INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Nombre'), (SELECT role_id FROM role WHERE name = 'ADMIN'));
 INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Nombre'), (SELECT role_id FROM role WHERE name = 'CLIENTE'));
 INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Nombre'), (SELECT role_id FROM role WHERE name = 'PROVEEDOR'));
-INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Centro de costo'), (SELECT role_id FROM role WHERE name = 'ADMIN'));
-INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Centro de costo'), (SELECT role_id FROM role WHERE name = 'CLIENTE'));
-INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Centro de costo'), (SELECT role_id FROM role WHERE name = 'PROVEEDOR'));
-INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Unidad de negocio'), (SELECT role_id FROM role WHERE name = 'ADMIN'));
-INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Unidad de negocio'), (SELECT role_id FROM role WHERE name = 'CLIENTE'));
-INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Unidad de negocio'), (SELECT role_id FROM role WHERE name = 'PROVEEDOR'));
-INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Perfil'), (SELECT role_id FROM role WHERE name = 'ADMIN'));
-INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Perfil'), (SELECT role_id FROM role WHERE name = 'CLIENTE'));
-INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Perfil'), (SELECT role_id FROM role WHERE name = 'PROVEEDOR'));
 INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Edad'), (SELECT role_id FROM role WHERE name = 'ADMIN'));
 INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Edad'), (SELECT role_id FROM role WHERE name = 'PROVEEDOR'));
 INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Antecedentes'), (SELECT role_id FROM role WHERE name = 'ADMIN'));

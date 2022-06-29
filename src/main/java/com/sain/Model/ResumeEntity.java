@@ -25,6 +25,15 @@ public class ResumeEntity {
     @Column(name="verification_date")
     private Date verificationDate;
 
+    @Column(name="cost_center")
+    private String costCenter;
+
+    @Column(name="buss_unit")
+    private String bussUnit;
+
+    @Column(name="profile")
+    private String profile;
+
     @ManyToOne
     @JoinColumn(name="user_id_by")
     private UserEntity userBy;
@@ -37,9 +46,6 @@ public class ResumeEntity {
 
     @Column(name="admin_observation")
     private String adminObservation;
-
-    @Column(name="process" , length = 20)
-    private String process;
 
     @Column(name="score")
     private Integer score;
@@ -90,6 +96,30 @@ public class ResumeEntity {
         this.verified = verified;
     }
 
+    public String getCostCenter() {
+        return costCenter;
+    }
+
+    public void setCostCenter(String costCenter) {
+        this.costCenter = costCenter;
+    }
+
+    public String getBussUnit() {
+        return bussUnit;
+    }
+
+    public void setBussUnit(String bussUnit) {
+        this.bussUnit = bussUnit;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
+    }
+
     public Date getVerificationDate() {
         return verificationDate;
     }
@@ -128,14 +158,6 @@ public class ResumeEntity {
 
     public void setAdminObservation(String adminObservation) {
         this.adminObservation = adminObservation;
-    }
-
-    public String getProcess() {
-        return process;
-    }
-
-    public void setProcess(String process) {
-        this.process = process;
     }
 
     public Integer getScore() {
