@@ -5,12 +5,6 @@ INSERT INTO public.role (name) VALUES ('PROVEEDOR');
 INSERT INTO public.questions( description, height, priority, section, status, type)
 	VALUES ('Nombre', 1, 1, 0, 'S', 'text');
 INSERT INTO public.questions( description, height, priority, section, status, type)
-    	VALUES ('Centro de costo', 1, 1, 0, 'S', 'text');
-INSERT INTO public.questions( description, height, priority, section, status, type)
-    	VALUES ('Unidad de negocio', 1, 1, 0, 'S', 'text');
-INSERT INTO public.questions( description, height, priority, section, status, type)
-	VALUES ('Perfil', 1, 1, 0, 'S', 'text');
-INSERT INTO public.questions( description, height, priority, section, status, type)
 	VALUES ('Edad', 1, 1, 1, 'S', 'number');
 INSERT INTO public.questions( description, height, priority, section, status, type)
     	VALUES ('Antecedentes', 1, 2, 1, 'S', 'text');

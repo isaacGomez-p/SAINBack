@@ -35,7 +35,9 @@ public class ResumeServiceImpl implements ResumeService{
     @Transactional
     public Response save(ResumeEntity resumeEntity) {
         resumeEntity.setCreationDate(new Date());
-        resumeEntity.setRecommendation(Constants.REC_REGISTERED);
+        if(resumeEntity.getRecommendation() == null || resumeEntity.getRecommendation().equals("")){
+            resumeEntity.setRecommendation(Constants.REC_REGISTERED);
+        }
         if(resumeEntity.getStatus() != null && !resumeEntity.getStatus().equals("")
                 && resumeEntity.getAdminObservation() != null && !resumeEntity.getAdminObservation().equals("")){
             resumeEntity.setRecommendation(Constants.REC_FINISHED);
