@@ -127,6 +127,7 @@ public class ResumeServiceImpl implements ResumeService{
                 if(resumeEntity.getRecommendation() != null && !resumeEntity.getRecommendation().equals(Constants.REC_FINISHED)){
                     if(count.get() == questionsCount){
                         resumeEntity.setRecommendation(Constants.REC_CHECKED);
+                        resumeEntity.setVerificationDate(new Date());
                     }else if(count.get() > 0 && count.get() < questionsCount){
                         resumeEntity.setRecommendation(Constants.REC_PROCESSING);
                     } else {
