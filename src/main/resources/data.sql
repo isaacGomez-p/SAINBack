@@ -3,8 +3,6 @@ INSERT INTO public.role (name) VALUES ('CLIENTE');
 INSERT INTO public.role (name) VALUES ('PROVEEDOR');
 --ANTECEDENTES
 INSERT INTO public.questions( description, height, priority, section, status, type, profiles)
-	VALUES ('Nombre', 1, 1, 0, 'S', 'text', 'ABC');
-INSERT INTO public.questions( description, height, priority, section, status, type, profiles)
 	VALUES ('Penales o Judiciales', 1, 1, 0, 'S', 'text','ABC');
 INSERT INTO public.questions( description, height, priority, section, status, type, profiles)
 	VALUES ('Disciplinarios', 1, 1, 0, 'S', 'text','ABC');
@@ -51,9 +49,6 @@ INSERT INTO public.questions( description, height, priority, section, status, ty
 INSERT INTO public.questions( description, height, priority, section, status, type, profiles)
     	VALUES ('Visita Domiciliaria Virtual', 1, 4, 4, 'S', 'text', 'C');
 
-INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Nombre'), (SELECT role_id FROM role WHERE name = 'ADMIN'));
-INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Nombre'), (SELECT role_id FROM role WHERE name = 'CLIENTE'));
-INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Nombre'), (SELECT role_id FROM role WHERE name = 'PROVEEDOR'));
 INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Penales o Judiciales'), (SELECT role_id FROM role WHERE name = 'ADMIN'));
 INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Penales o Judiciales'), (SELECT role_id FROM role WHERE name = 'PROVEEDOR'));
 INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Disciplinarios'), (SELECT role_id FROM role WHERE name = 'ADMIN'));
@@ -99,7 +94,7 @@ INSERT INTO public.users(email, identification, lastname, name, password, role_i
 INSERT INTO public.users(email, identification, lastname, name, password, role_id)
     VALUES ('patorres@indracompany.com', '1234567811', 'Torres', 'Pilar', '6HF8WI8zzA0JAXDrHFEIeA==', (SELECT role_id FROM role WHERE name = 'CLIENTE'));
 INSERT INTO public.users(email, identification, lastname, name, password, role_id)
-    VALUES ('contratacion@indracompany.com', '1234567812', 'Ramirez', 'Carolina', 'p5wcBvbJnCh5l174R9e+Ew==', (SELECT role_id FROM role WHERE name = 'CLIENTE'));
+    VALUES ('contratacionrrhh@indracompany.com', '1234567812', 'Ramirez', 'Carolina', 'p5wcBvbJnCh5l174R9e+Ew==', (SELECT role_id FROM role WHERE name = 'CLIENTE'));
 INSERT INTO public.users(email, identification, lastname, name, password, role_id)
     VALUES ('proveedor@email.com', '1234567891', 'Gonzales', 'Pedro', 'zFSnAAGxGMc1zGU29apWrQ==', (SELECT role_id FROM role WHERE name = 'PROVEEDOR'));
 INSERT INTO public.users(email, identification, lastname, name, password, role_id)
