@@ -6,6 +6,8 @@ public class RequestEntity {
 
     private String data;
 
+    private String data1;
+
     public Integer getId() {
         return id;
     }
@@ -20,5 +22,13 @@ public class RequestEntity {
 
     public void setData(String data) {
         this.data = data;
+    }
+
+    public String getData1() {
+        return data1;
+    }
+
+    public void setData1(String data1) {
+        this.data1 = data1;
     }
 }

@@ -17,7 +17,6 @@ public class QuestionsServiceImpl implements QuestionsService {
 
     @Autowired
     private QuestionsRepository questionsRepository;
-
     @Autowired
     private RoleRepository roleRepository;
 
@@ -25,11 +24,12 @@ public class QuestionsServiceImpl implements QuestionsService {
     public Response findAll(RequestEntity requestEntity) {
     Set<RoleEntity> roleEntitySet = new HashSet<>();
     roleEntitySet.add(roleRepository.findById(Integer.parseInt(requestEntity.getData())).get());
-    List<QuestionsEntity> questionsEntityList = questionsRepository.findByRolesIn(roleEntitySet);
-    if(questionsEntityList.isEmpty())
-        return new Response(HttpStatus.NO_CONTENT, "No Data Found!", null);
-    else
-        return new Response(HttpStatus.OK, "Data Found!", questionsEntityList);
+    List<QuestionsEntity> questionsEntityList = questionsRepository.findByProfilesContainingAndRolesIn(requestEntity.getData1(), roleEntitySet);
+        if(questionsEntityList.isEmpty())
+            return new Response(HttpStatus.NO_CONTENT, "No Data Found!", null);
+        else{
+            return new Response(HttpStatus.OK, "Data Found!", questionsEntityList);
+        }
     }
 
     @Transactional(readOnly = true)

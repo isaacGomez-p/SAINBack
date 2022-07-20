@@ -28,6 +28,9 @@ public class QuestionsEntity {
     @Column(name="height")
     private Integer height;
 
+    @Column(name="profiles")
+    private String profiles;
+
     @Column(name="section")
     private Integer section;
 
@@ -79,6 +82,14 @@ public class QuestionsEntity {
 
     public void setHeight(Integer height) {
         this.height = height;
+    }
+
+    public String getProfiles() {
+        return profiles;
+    }
+
+    public void setProfiles(String profiles) {
+        this.profiles = profiles;
     }
 
     public Integer getSection() {

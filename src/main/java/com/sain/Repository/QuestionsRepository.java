@@ -11,6 +11,7 @@ import java.util.Set;
 @Repository
 public interface QuestionsRepository extends JpaRepository<QuestionsEntity, Integer> {
 
-    List<QuestionsEntity> findByRolesIn(Set<RoleEntity> roleEntitySet);
+    List<QuestionsEntity> findByProfilesContainingAndRolesIn(String profile,Set<RoleEntity> roleEntitySet);
+    List<QuestionsEntity> findByProfilesContaining(String profile);
 
 }

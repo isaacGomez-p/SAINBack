@@ -10,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+import java.util.Optional;
+
 @Service
 public class AnswerServiceImpl implements AnswerService{
 
@@ -19,6 +22,27 @@ public class AnswerServiceImpl implements AnswerService{
     @Transactional
     public Response save(AnswerEntity answerEntity) {
         return new Response(HttpStatus.CREATED, answerRepository.save(answerEntity));
+    }
+
+    @Override
+    public Response update(ResumeEntity resumeEntity, AnswerEntity answerEntity) {
+         if (answerEntity.getAnswerId() == null) {
+            answerEntity.setResumes(resumeEntity);
+            return new Response(HttpStatus.OK, "Entity Saved", answerRepository.save(answerEntity));
+        } else {
+            Optional<AnswerEntity> optional = answerRepository.findById(answerEntity.getAnswerId());
+            if (optional != null && optional.isPresent()) {
+                optional.get().setDescription(answerEntity.getDescription());
+                optional.get().setResult(answerEntity.getResult());
+                optional.get().setUserMod(answerEntity.getUserMod());
+                optional.get().setVerified(answerEntity.getVerified());
+                optional.get().setObservation(answerEntity.getObservation());
+                optional.get().setVerifiedDate(new Date());
+                return new Response(HttpStatus.OK, "Entity Updated", answerRepository.save(optional.get()));
+            }else {
+                return new Response(HttpStatus.NOT_FOUND, "Entity Not Found");
+            }
+        }
     }
 
     @Transactional(readOnly = true)

@@ -9,6 +9,8 @@ public interface AnswerService {
 
     public Response save(AnswerEntity answerEntity);
 
+    public Response update(ResumeEntity resumeEntity, AnswerEntity answerEntity);
+
     public Response findByResume(ResumeEntity resumeEntity);
 
 }

@@ -115,9 +115,10 @@ public class ResumeServiceImpl implements ResumeService{
     }
 
     private List<ResumeEntity> updateVerifiedAnswers(List<ResumeEntity> resumeEntityList){
-        long questionsCount = questionsRepository.count();
+
         if(resumeEntityList != null && !resumeEntityList.isEmpty()){
             resumeEntityList.forEach(resumeEntity -> {
+                long questionsCount = questionsRepository.findByProfilesContaining(resumeEntity.getProfile()).size();
                 AtomicInteger count = new AtomicInteger();
                 resumeEntity.getAnswerEntities().forEach(answerEntity -> {
                     if(answerEntity.getVerified() != null && answerEntity.getVerified()){
