@@ -1,6 +1,9 @@
 package com.sain.Service;
 
-import com.sain.Model.*;
+import com.sain.Model.RequestEntity;
+import com.sain.Model.Response;
+import com.sain.Model.ResumeEntity;
+import com.sain.Model.UserEntity;
 import com.sain.Repository.AnswerRepository;
 import com.sain.Repository.QuestionsRepository;
 import com.sain.Repository.ResumeRepository;
@@ -13,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
@@ -42,28 +44,7 @@ public class ResumeServiceImpl implements ResumeService{
                 && resumeEntity.getAdminObservation() != null && !resumeEntity.getAdminObservation().equals("")){
             resumeEntity.setRecommendation(Constants.REC_FINISHED);
         }
-        ResumeEntity savedResume = resumeRepository.save(resumeEntity);
-        if(resumeEntity.getAnswerEntities() != null && !resumeEntity.getAnswerEntities().isEmpty()){
-            resumeEntity.getAnswerEntities().forEach(answerEntity -> {
-                answerEntity.setResumes(savedResume);
-                if(answerEntity.getAnswerId() != null){
-                    Optional<AnswerEntity> optional = answerRepository.findById(answerEntity.getAnswerId());
-                    if(optional.isPresent()){
-                        optional.get().setVerified(answerEntity.getVerified());
-                        optional.get().setResult(answerEntity.getResult());
-                        optional.get().setDescription(answerEntity.getDescription());
-                        optional.get().setUserMod(answerEntity.getUserMod());
-                        optional.get().setVerifiedDate(new Date());
-                        answerRepository.save(optional.get());
-                    }
-                } else {
-                    answerEntity.setCreationDate(new Date());
-                    answerRepository.save(answerEntity);
-                }
-            });
-        }
-
-        return new Response(HttpStatus.CREATED, savedResume);
+        return new Response(HttpStatus.CREATED, resumeRepository.save(resumeEntity));
     }
 
     @Transactional
@@ -110,15 +91,19 @@ public class ResumeServiceImpl implements ResumeService{
 
     @Transactional
     public Response delete(RequestEntity requestEntity) {
-        resumeRepository.deleteById(requestEntity.getId());
-        return new Response(HttpStatus.NO_CONTENT, "Resume Deleted");
+        try{
+            resumeRepository.deleteById(requestEntity.getId());
+            return new Response(HttpStatus.NO_CONTENT, "Resume Deleted");
+        }catch (Exception e){
+            return new Response(HttpStatus.CONFLICT, "ERROR", e.getMessage());
+        }
     }
 
     private List<ResumeEntity> updateVerifiedAnswers(List<ResumeEntity> resumeEntityList){
-
         if(resumeEntityList != null && !resumeEntityList.isEmpty()){
             resumeEntityList.forEach(resumeEntity -> {
-                long questionsCount = questionsRepository.findByProfilesContaining(resumeEntity.getProfile()).size();
+                String profile = resumeEntity.getProfile().substring(5);
+                long questionsCount = questionsRepository.findByProfilesContaining(profile).size();
                 AtomicInteger count = new AtomicInteger();
                 resumeEntity.getAnswerEntities().forEach(answerEntity -> {
                     if(answerEntity.getVerified() != null && answerEntity.getVerified()){

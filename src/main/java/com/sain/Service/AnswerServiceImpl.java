@@ -27,6 +27,9 @@ public class AnswerServiceImpl implements AnswerService{
     @Override
     public Response update(ResumeEntity resumeEntity, AnswerEntity answerEntity) {
          if (answerEntity.getAnswerId() == null) {
+             if(answerEntity.getVerified()){
+                 answerEntity.setVerifiedDate(new Date());
+             }
             answerEntity.setResumes(resumeEntity);
             return new Response(HttpStatus.OK, "Entity Saved", answerRepository.save(answerEntity));
         } else {
@@ -37,7 +40,11 @@ public class AnswerServiceImpl implements AnswerService{
                 optional.get().setUserMod(answerEntity.getUserMod());
                 optional.get().setVerified(answerEntity.getVerified());
                 optional.get().setObservation(answerEntity.getObservation());
-                optional.get().setVerifiedDate(new Date());
+                if(answerEntity.getVerified()){
+                    if(optional.get().getVerifiedDate() == null) {
+                        optional.get().setVerifiedDate(new Date());
+                    }
+                }
                 return new Response(HttpStatus.OK, "Entity Updated", answerRepository.save(optional.get()));
             }else {
                 return new Response(HttpStatus.NOT_FOUND, "Entity Not Found");
