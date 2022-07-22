@@ -1,5 +1,7 @@
 package com.sain.Model;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -38,6 +40,10 @@ public class FileEntity implements Serializable {
 
     @Column(name = "type", length = 120)
     private String type;
+
+    @Lob
+    @Type(type = "org.hibernate.type.BinaryType")
+    private byte[] filee;
 
     @Transient
     private byte[] file;
@@ -121,4 +127,6 @@ public class FileEntity implements Serializable {
     public void setFile(byte[] file) {
         this.file = file;
     }
+
+
 }

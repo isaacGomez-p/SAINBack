@@ -1,6 +1,7 @@
 package com.sain.Service;
 
 import com.sain.Model.FileEntity;
+import com.sain.Model.RequestEntity;
 import com.sain.Model.Response;
 import com.sain.Repository.FileRepository;
 import com.sain.Utils.SainUtils;
@@ -26,11 +27,11 @@ public class FileServiceImpl implements FileService{
     private SainUtils sainUtils;
 
     @Transactional
-    public Response save(MultipartFile files, FileEntity fileEntity) throws Exception {
-        if(files == null){
+    public Response save(FileEntity fileEntity) throws Exception {
+        if(fileEntity.getFilee() == null){
             throw new Exception("Error");//ServiceException(TempEdgeErrorCode.ERROR_CODE_06, TempEdgeErrorKey.ERROR_KEY_03);
         }
-        fileEntity = sainUtils.saveFiles(fileEntity, files);
+        fileEntity = sainUtils.saveFiles(fileEntity);
         Optional<FileEntity> fileEntity1 = fileRepository.findByModuleIdAndModuleAndType(fileEntity.getModuleId(), fileEntity.getModule(), fileEntity.getType());
         if(fileEntity1 != null && fileEntity1.isPresent()){
             fileEntity1.get().setFile(fileEntity.getFile());
@@ -72,6 +73,16 @@ public class FileServiceImpl implements FileService{
             });
         }
         return filesList;
+    }
+
+
+    public Response findByModuleId(RequestEntity requestEntity) {
+        List<FileEntity> fileEntityList = fileRepository.findByModuleId(requestEntity.getId());
+        if(fileEntityList != null && fileEntityList.size() > 0){
+            return new Response(HttpStatus.OK, "Datos encontrados", fileEntityList);
+        }else{
+            return new Response(HttpStatus.NOT_FOUND, "No hay archivos para esta persona");
+        }
     }
 
 }

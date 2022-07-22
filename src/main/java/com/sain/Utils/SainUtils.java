@@ -16,11 +16,11 @@ public class SainUtils {
     @Value("${files.directory}")
     private String FILE_PATH;
 
-    public FileEntity saveFiles(FileEntity fileEntity, MultipartFile docs){
+    public FileEntity saveFiles(FileEntity fileEntity){
         try {
             String dirName = FILE_PATH + File.separator  + "_" + File.separator;
             String fileName = fileEntity.getModuleId().toString() + "_";
-            if(docs != null) {
+            if(fileEntity.getFilee() != null) {
                 if(fileEntity.getType() == null || fileEntity.getType().equals("")){
                     throw new Exception("Error");//ServiceException(TempEdgeErrorCode.ERROR_CODE_06, TempEdgeErrorKey.ERROR_KEY_03);
                 }
@@ -42,7 +42,7 @@ public class SainUtils {
                 fileName = fileName.trim();
 
                 File savedDocs = new File(fileName);
-                byte[] targetArray = IOUtils.toByteArray(docs.getInputStream());
+                byte[] targetArray = fileEntity.getFilee();
                 FileUtils.writeByteArrayToFile(savedDocs, targetArray);
                 fileEntity.setFileName(savedDocs.getName());
                 fileEntity.setLocation(fileName);
