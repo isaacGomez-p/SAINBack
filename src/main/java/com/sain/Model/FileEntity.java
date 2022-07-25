@@ -128,5 +128,11 @@ public class FileEntity implements Serializable {
         this.file = file;
     }
 
+    public byte[] getFilee() {
+        return filee;
+    }
 
+    public void setFilee(byte[] filee) {
+        this.filee = filee;
+    }
 }

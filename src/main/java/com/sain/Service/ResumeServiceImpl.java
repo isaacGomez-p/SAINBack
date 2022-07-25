@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
@@ -45,6 +46,26 @@ public class ResumeServiceImpl implements ResumeService{
             resumeEntity.setRecommendation(Constants.REC_FINISHED);
         }
         return new Response(HttpStatus.CREATED, resumeRepository.save(resumeEntity));
+    }
+
+    @Override
+    public Response update(ResumeEntity resumeEntity) {
+        Optional<ResumeEntity> optional = resumeRepository.findById(resumeEntity.getResumeId());
+        if(optional.isPresent()){
+            if(resumeEntity.getAdminObservation() != null && !resumeEntity.getAdminObservation().equals("")){
+                optional.get().setAdminObservation(resumeEntity.getAdminObservation());
+                if(resumeEntity.getStatus() != null){
+                    optional.get().setStatus(resumeEntity.getStatus());
+                    optional.get().setRecommendation(Constants.REC_FINISHED);
+                }
+            }
+            if(resumeEntity.getProvObservation() != null && !resumeEntity.getProvObservation().equals("")){
+                optional.get().setProvObservation(resumeEntity.getProvObservation());
+            }
+            return new Response(HttpStatus.OK, "Data Updated!", resumeRepository.save(optional.get()));
+        }else{
+            return new Response(HttpStatus.NOT_FOUND, "Data Not Found");
+        }
     }
 
     @Transactional
@@ -111,7 +132,7 @@ public class ResumeServiceImpl implements ResumeService{
                     }
                 });
                 if(resumeEntity.getRecommendation() != null && !resumeEntity.getRecommendation().equals(Constants.REC_FINISHED)){
-                    if(count.get() == questionsCount){
+                    if(count.get() == questionsCount && resumeEntity.getCreationDate() != null){
                         resumeEntity.setRecommendation(Constants.REC_CHECKED);
                         resumeEntity.setVerificationDate(new Date());
                     }else if(count.get() > 0 && count.get() < questionsCount){

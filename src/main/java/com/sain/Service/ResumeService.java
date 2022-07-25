@@ -9,6 +9,8 @@ public interface ResumeService {
 
     public Response save(ResumeEntity resumeEntity);
 
+    public Response update(ResumeEntity resumeEntity);
+
     public Response findAll();
 
     public Response findByUserAssign(UserEntity userEntity);

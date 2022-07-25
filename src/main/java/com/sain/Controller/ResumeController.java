@@ -21,6 +21,11 @@ public class ResumeController {
         return this.resumeService.save(resumeEntity);
     }
 
+    @PostMapping(value = "/update")
+    public Response updateResume(@RequestBody ResumeEntity resumeEntity){
+        return this.resumeService.update(resumeEntity);
+    }
+
     @PostMapping(value = "/findByUserAssign")
     public Response findByUserAssign(@RequestBody UserEntity userEntity) { return this.resumeService.findByUserAssign(userEntity); }
 

@@ -65,6 +65,8 @@ INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question
 INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Listas de Terroristas de Estados Unidos y de la Unión Europea'), (SELECT role_id FROM role WHERE name = 'PROVEEDOR'));
 INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Lista de Interpol'), (SELECT role_id FROM role WHERE name = 'ADMIN'));
 INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Lista de Interpol'), (SELECT role_id FROM role WHERE name = 'PROVEEDOR'));
+INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Sanciones del Banco Mundial'), (SELECT role_id FROM role WHERE name = 'ADMIN'));
+INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Sanciones del Banco Mundial'), (SELECT role_id FROM role WHERE name = 'PROVEEDOR'));
 INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Lista de la Administración para el Control de Drogas'), (SELECT role_id FROM role WHERE name = 'ADMIN'));
 INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Lista de la Administración para el Control de Drogas'), (SELECT role_id FROM role WHERE name = 'PROVEEDOR'));
 INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Lista del FBI'), (SELECT role_id FROM role WHERE name = 'ADMIN'));
