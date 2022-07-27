@@ -13,23 +13,27 @@ INSERT INTO public.questions( description, height, priority, section, status, ty
 
 --LISTAS RESTRICTIVAS
 INSERT INTO public.questions( description, height, priority, section, status, type, profiles)
-        VALUES ('Lista Clinton', 1, 1, 1, 'S', 'number','ABC');
+        VALUES ('Lista Clinton', 1, 1, 1, 'S', 'text','ABC');
 INSERT INTO public.questions( description, height, priority, section, status, type, profiles)
-        VALUES ('Listas de la ONU', 1, 1, 1, 'S', 'number', 'ABC');
+        VALUES ('Listas de la ONU', 1, 1, 1, 'S', 'text', 'ABC');
 INSERT INTO public.questions( description, height, priority, section, status, type, profiles)
-        VALUES ('Listas de Terroristas de Estados Unidos y de la Unión Europea', 1, 1, 1, 'S', 'number', 'ABC');
+        VALUES ('Listas de Terroristas de Estados Unidos y de la Unión Europea', 1, 1, 1, 'S', 'text', 'ABC');
 INSERT INTO public.questions( description, height, priority, section, status, type, profiles)
-        VALUES ('Lista de Interpol', 1, 1, 1, 'S', 'number', 'ABC');
+        VALUES ('Lista de Interpol', 1, 1, 1, 'S', 'text', 'ABC');
 INSERT INTO public.questions( description, height, priority, section, status, type, profiles)
-        VALUES ('Sanciones del Banco Mundial', 1, 1, 1, 'S', 'number', 'ABC');
+        VALUES ('Sanciones del Banco Mundial', 1, 1, 1, 'S', 'text', 'ABC');
 INSERT INTO public.questions( description, height, priority, section, status, type, profiles)
-        VALUES ('Lista de la Administración para el Control de Drogas', 1, 1, 1, 'S', 'number', 'ABC');
+        VALUES ('Lista de la Administración para el Control de Drogas', 1, 1, 1, 'S', 'text', 'ABC');
 INSERT INTO public.questions( description, height, priority, section, status, type, profiles)
-        VALUES ('Lista del FBI', 1, 1, 1, 'S', 'number', 'ABC');
+        VALUES ('Lista del FBI', 1, 1, 1, 'S', 'text', 'ABC');
 INSERT INTO public.questions( description, height, priority, section, status, type, profiles)
-        VALUES ('Contraloría General de la Nación', 1, 1, 1, 'S', 'number', 'ABC');
+        VALUES ('Contraloría General de la Nación', 1, 1, 1, 'S', 'text', 'ABC');
 
 --REFERENCIACION LABORAL
+INSERT INTO public.questions( description, height, priority, section, status, type, profiles)
+    	VALUES ('Pasantía', 1, 2, 2, 'S', 'text', 'BC');
+INSERT INTO public.questions( description, height, priority, section, status, type, profiles)
+        VALUES ('Sin Experiencia Laboral', 1, 2, 2, 'S', 'text', 'BC');
 INSERT INTO public.questions( description, height, priority, section, status, type, profiles)
     	VALUES ('Último Trabajo', 1, 2, 2, 'S', 'text', 'BC');
 INSERT INTO public.questions( description, height, priority, section, status, type, profiles)
@@ -73,6 +77,10 @@ INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question
 INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Lista del FBI'), (SELECT role_id FROM role WHERE name = 'PROVEEDOR'));
 INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Contraloría General de la Nación'), (SELECT role_id FROM role WHERE name = 'ADMIN'));
 INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Contraloría General de la Nación'), (SELECT role_id FROM role WHERE name = 'PROVEEDOR'));
+INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Pasantía'), (SELECT role_id FROM role WHERE name = 'ADMIN'));
+INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Pasantía'), (SELECT role_id FROM role WHERE name = 'PROVEEDOR'));
+INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Sin Experiencia Laboral'), (SELECT role_id FROM role WHERE name = 'ADMIN'));
+INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Sin Experiencia Laboral'), (SELECT role_id FROM role WHERE name = 'PROVEEDOR'));
 INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Último Trabajo'), (SELECT role_id FROM role WHERE name = 'ADMIN'));
 INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Último Trabajo'), (SELECT role_id FROM role WHERE name = 'PROVEEDOR'));
 INSERT INTO public.question_roles(question_id, role_id)	VALUES ((SELECT question_id FROM questions WHERE description = 'Penúltimo Trabajo'), (SELECT role_id FROM role WHERE name = 'ADMIN'));
@@ -98,7 +106,7 @@ INSERT INTO public.users(email, identification, lastname, name, password, role_i
 INSERT INTO public.users(email, identification, lastname, name, password, role_id)
     VALUES ('contratacionrrhh@indracompany.com', '1234567812', 'Ramirez', 'Carolina', 'p5wcBvbJnCh5l174R9e+Ew==', (SELECT role_id FROM role WHERE name = 'CLIENTE'));
 INSERT INTO public.users(email, identification, lastname, name, password, role_id)
-    VALUES ('proveedor@email.com', '1234567891', 'Gonzales', 'Pedro', 'zFSnAAGxGMc1zGU29apWrQ==', (SELECT role_id FROM role WHERE name = 'PROVEEDOR'));
+    VALUES ('proveedor@email.com', '1234567891', 'Gonzales', 'PROTMARK', 'zFSnAAGxGMc1zGU29apWrQ==', (SELECT role_id FROM role WHERE name = 'PROVEEDOR'));
 INSERT INTO public.users(email, identification, lastname, name, password, role_id)
     VALUES ('jezzikamorales.psicologa@gmail.com', '1234567892', 'Morales', 'Jezzika', 'L5uaaOB2IFDwSlzjyGQmALqx7IygltRv', (SELECT role_id FROM role WHERE name = 'PROVEEDOR'));
 INSERT INTO public.users(email, identification, lastname, name, password, role_id)

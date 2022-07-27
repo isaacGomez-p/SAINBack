@@ -7,7 +7,9 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "answer")
+@Table(name = "answer", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"question_id", "resume_id"})
+})
 public class AnswerEntity {
 
     @Id
@@ -119,8 +121,6 @@ public class AnswerEntity {
         this.resumes = resumes;
     }
 
-    @JsonIgnore
-    @JsonProperty(value = "user_id")
     public UserEntity getUserMod() {
         return userMod;
     }

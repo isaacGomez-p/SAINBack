@@ -102,7 +102,7 @@ public class UserEntity implements Serializable {
     }
 
     @JsonIgnore
-    @JsonProperty(value = "password")
+    @JsonProperty(value = "answerEntities")
     public List<AnswerEntity> getAnswerEntities() {
         return answerEntities;
     }
