@@ -13,5 +13,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
     Optional<UserEntity> findByEmail(String email);
     List<UserEntity> findByRoleEntity(RoleEntity role);
+    Boolean existsByEmail(String email);
+    Boolean existsByIdentification(String identification);
 
 }
