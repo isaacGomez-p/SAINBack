@@ -27,12 +27,6 @@ public class UserServiceImpl implements UserService {
     public Response save(UserEntity userEntity) {
         EncryptDecryptPwd encryptDecryptPwd = new EncryptDecryptPwd();
         userEntity.setPassword(encryptDecryptPwd.encryptKey(userEntity.getPassword()));
-        if(userRepository.existsByIdentification(userEntity.getIdentification())){
-            return new Response(HttpStatus.CONFLICT, "Identification");
-        }
-        if(userRepository.existsByEmail(userEntity.getEmail())){
-            return new Response(HttpStatus.CONFLICT, "Email");
-        }
         return new Response(HttpStatus.CREATED, userRepository.save(userEntity));
     }
 

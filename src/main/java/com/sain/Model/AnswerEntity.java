@@ -7,8 +7,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "answer", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"question_id", "resume_id"})
+@Table(name = "answer", uniqueConstraints={
+        @UniqueConstraint(columnNames = {"resume_id", "question_id"})
 })
 public class AnswerEntity {
 

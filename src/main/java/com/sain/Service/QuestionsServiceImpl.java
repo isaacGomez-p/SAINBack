@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -35,13 +34,6 @@ public class QuestionsServiceImpl implements QuestionsService {
 
     @Transactional(readOnly = true)
     public Response getCount() {
-        List<Long> list = new ArrayList<>();
-        long questionsCount = questionsRepository.findByProfilesContaining("A").size();
-        list.add(questionsCount);
-        questionsCount = questionsRepository.findByProfilesContaining("B").size();
-        list.add(questionsCount);
-        questionsCount = questionsRepository.findByProfilesContaining("C").size();
-        list.add(questionsCount);
-        return new Response(HttpStatus.OK, list);
+        return new Response(HttpStatus.OK, questionsRepository.findAll().size());
     }
 }
