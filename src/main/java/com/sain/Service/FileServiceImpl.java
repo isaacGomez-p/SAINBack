@@ -34,7 +34,7 @@ public class FileServiceImpl implements FileService{
         fileEntity = sainUtils.saveFiles(fileEntity);
         Optional<FileEntity> fileEntity1 = fileRepository.findByModuleIdAndModuleAndType(fileEntity.getModuleId(), fileEntity.getModule(), fileEntity.getType());
         if(fileEntity1 != null && fileEntity1.isPresent()){
-            fileEntity1.get().setFile(fileEntity.getFile());
+            fileEntity1.get().setFilee(fileEntity.getFilee());
             fileEntity1.get().setFileName(fileEntity.getFileName());
             fileEntity1.get().setLocation(fileEntity.getLocation());
             fileEntity1.get().setDtModify(new Date());

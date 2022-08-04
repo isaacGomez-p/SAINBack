@@ -41,10 +41,10 @@ public class SainUtils {
                 fileName += "." + fileEntity.getExtension();
                 fileName = fileName.trim();
 
-                File savedDocs = new File(fileName);
-                byte[] targetArray = fileEntity.getFilee();
-                FileUtils.writeByteArrayToFile(savedDocs, targetArray);
-                fileEntity.setFileName(savedDocs.getName());
+                //File savedDocs = new File(fileName);
+                //byte[] targetArray = fileEntity.getFilee();
+                //FileUtils.writeByteArrayToFile(savedDocs, targetArray);
+                fileEntity.setFileName(fileEntity.getType());
                 fileEntity.setLocation(fileName);
             }
         } catch (Exception e) {
