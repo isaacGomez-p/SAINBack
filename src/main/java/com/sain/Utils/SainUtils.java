@@ -38,7 +38,7 @@ public class SainUtils {
                     throw new Exception("Error");//throw new ServiceException(TempEdgeErrorCode.ERROR_CODE_06, TempEdgeErrorKey.ERROR_KEY_03);
                 }
 
-                fileName += "." + fileEntity.getExtension();
+                //fileName += "." + fileEntity.getExtension();
                 fileName = fileName.trim();
 
                 //File savedDocs = new File(fileName);
