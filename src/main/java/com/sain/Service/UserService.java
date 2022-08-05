@@ -10,5 +10,5 @@ public interface UserService {
     public Response login(UserEntity userEntity);
     public Response findByRole(RequestEntity requestEntity);
     public Response update(UserEntity userEntity);
-
+    public Response findById(RequestEntity requestEntity);
 }

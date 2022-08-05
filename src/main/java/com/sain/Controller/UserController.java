@@ -29,4 +29,7 @@ public class UserController {
     @PostMapping(value = "/update")
     public Response update(@RequestBody UserEntity userEntity) { return this.userService.update(userEntity); }
 
+    @PostMapping(value = "/findById")
+    public Response findById(@RequestBody RequestEntity requestEntity) { return this.userService.findById(requestEntity); }
+
 }

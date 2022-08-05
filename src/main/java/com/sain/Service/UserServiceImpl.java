@@ -69,6 +69,12 @@ public class UserServiceImpl implements UserService {
         return new Response(HttpStatus.OK, "Data Updated", userRepository.save(userEntity));
     }
 
+    @Override
+    public Response findById(RequestEntity requestEntity) {
+        userRepository.findById(requestEntity.getId()).ifPresent(userEntity -> new Response(HttpStatus.OK, "Data Found", userEntity));
+        return new Response(HttpStatus.NOT_FOUND, "Data Not Found");
+    }
+
     private boolean confirmCredentials(String password, UserEntity userSaved){
         EncryptDecryptPwd encryptDecryptPwd = new EncryptDecryptPwd();
         return encryptDecryptPwd.decryptKey(userSaved.getPassword()).equals(password);
