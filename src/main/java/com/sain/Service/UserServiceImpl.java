@@ -69,9 +69,12 @@ public class UserServiceImpl implements UserService {
         return new Response(HttpStatus.OK, "Data Updated", userRepository.save(userEntity));
     }
 
-    @Override
+    @Transactional(readOnly = true)
     public Response findById(RequestEntity requestEntity) {
-        userRepository.findById(requestEntity.getId()).ifPresent(userEntity -> new Response(HttpStatus.OK, "Data Found", userEntity));
+        Optional<UserEntity> opt = userRepository.findById(requestEntity.getId());
+        if(opt != null && opt.isPresent()){
+            return new Response(HttpStatus.OK, "Data Found", opt.get());
+        }
         return new Response(HttpStatus.NOT_FOUND, "Data Not Found");
     }
 
