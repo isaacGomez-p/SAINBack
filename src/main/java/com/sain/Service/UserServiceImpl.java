@@ -41,7 +41,6 @@ public class UserServiceImpl implements UserService {
         if(userEntity.getPassword() == null || userEntity.getPassword().equals("") || userEntity.getEmail() == null || userEntity.getEmail().equals("")){
             return new Response(HttpStatus.CONFLICT, "Password and Email required");
         }
-
         Optional<UserEntity> optional = userRepository.findByEmail(userEntity.getEmail());
         if(optional != null && optional.isPresent()){
             if(confirmCredentials(userEntity.getPassword(), optional.get())){
@@ -58,6 +57,16 @@ public class UserServiceImpl implements UserService {
     public Response findByRole(RequestEntity requestEntity) {
         RoleEntity roleEntity = roleRepository.findById(requestEntity.getId()).get();
         return new Response(HttpStatus.OK, "Data found", userRepository.findByRoleEntity(roleEntity));
+    }
+
+    @Transactional
+    public Response update(UserEntity userEntity) {
+        if(!confirmCredentials(userEntity.getPass(), userEntity)) {
+            return new Response(HttpStatus.NOT_FOUND, "Bad Credentials");
+        }
+        EncryptDecryptPwd encryptDecryptPwd = new EncryptDecryptPwd();
+        userEntity.setPassword(encryptDecryptPwd.encryptKey(userEntity.getPassword()));
+        return new Response(HttpStatus.OK, "Data Updated", userRepository.save(userEntity));
     }
 
     private boolean confirmCredentials(String password, UserEntity userSaved){

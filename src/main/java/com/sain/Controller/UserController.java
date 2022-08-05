@@ -26,4 +26,7 @@ public class UserController {
     @PostMapping(value = "/findByRole")
     public Response findByRole(@RequestBody RequestEntity requestEntity) { return this.userService.findByRole(requestEntity); }
 
+    @PostMapping(value = "/update")
+    public Response update(@RequestBody UserEntity userEntity) { return this.userService.update(userEntity); }
+
 }

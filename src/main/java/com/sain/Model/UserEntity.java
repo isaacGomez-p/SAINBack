@@ -48,6 +48,9 @@ public class UserEntity implements Serializable {
     @JoinColumn(name = "role_id", nullable = false)
     private RoleEntity roleEntity;
 
+    @Transient
+    private String pass;
+
     /*@OneToOne(mappedBy = "user")
     private RoleEntity roleEntity;*/
 
@@ -147,6 +150,14 @@ public class UserEntity implements Serializable {
 
     public void setRoleEntity(RoleEntity roleEntity) {
         this.roleEntity = roleEntity;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
     /*public RoleEntity getRoleEntity() {

@@ -9,5 +9,6 @@ public interface UserService {
     public Response save(UserEntity userEntity);
     public Response login(UserEntity userEntity);
     public Response findByRole(RequestEntity requestEntity);
+    public Response update(UserEntity userEntity);
 
 }
