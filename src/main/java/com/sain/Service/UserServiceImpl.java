@@ -61,8 +61,8 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     public Response update(UserEntity userEntity) {
-        UserEntity userEntityAux = userRepository.findById(userEntity.getUserId()).get();
-        if(!confirmCredentials(userEntity.getPass(), userEntityAux)) {
+        userEntity = userRepository.findById(userEntity.getUserId()).get();
+        if(!confirmCredentials(userEntity.getPass(), userEntity)) {
             return new Response(HttpStatus.NOT_FOUND, "Bad Credentials");
         }
 
