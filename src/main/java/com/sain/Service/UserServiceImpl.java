@@ -61,13 +61,19 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     public Response update(UserEntity userEntity) {
-        userEntity = userRepository.findById(userEntity.getUserId()).get();
-        if(!confirmCredentials(userEntity.getPass(), userEntity)) {
+        UserEntity userEntityAux = userRepository.findById(userEntity.getUserId()).get();
+        if(!confirmCredentials(userEntity.getPass(), userEntityAux)) {
             return new Response(HttpStatus.NOT_FOUND, "Bad Credentials");
         }
+
         EncryptDecryptPwd encryptDecryptPwd = new EncryptDecryptPwd();
-        userEntity.setPassword(encryptDecryptPwd.encryptKey(userEntity.getPassword()));
-        return new Response(HttpStatus.OK, "Data Updated", userRepository.save(userEntity));
+        userEntityAux.setPassword(encryptDecryptPwd.encryptKey(userEntity.getPassword()));
+        userEntityAux.setName(userEntity.getName());
+        userEntityAux.setLastname(userEntity.getLastname());
+        userEntityAux.setIdentification(userEntity.getIdentification());
+        userEntityAux.setEmail(userEntity.getEmail());
+
+        return new Response(HttpStatus.OK, "Data Updated", userRepository.save(userEntityAux));
     }
 
     @Transactional(readOnly = true)
