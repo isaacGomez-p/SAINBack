@@ -9,6 +9,7 @@ import com.sain.Repository.QuestionsRepository;
 import com.sain.Repository.ResumeRepository;
 import com.sain.Utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -70,17 +71,21 @@ public class ResumeServiceImpl implements ResumeService{
 
     @Transactional
     public Response findAll() {
-        return new Response(HttpStatus.OK, this.updateVerifiedAnswers(resumeRepository.findAll()));
+        return new Response(HttpStatus.OK, this.updateVerifiedAnswers(resumeRepository.findAll(sortByCreationDate())));
     }
 
     @Transactional
     public Response findByUserAssign(UserEntity userEntity) {
-        return new Response(HttpStatus.OK, this.updateVerifiedAnswers(resumeRepository.findByUserAssign(userEntity)));
+        return new Response(HttpStatus.OK, this.updateVerifiedAnswers(resumeRepository.findByUserAssign(userEntity, sortByCreationDate())));
     }
 
     @Transactional
     public Response findByUserCreate(UserEntity userEntity) {
-        return new Response(HttpStatus.OK, this.updateVerifiedAnswers(resumeRepository.findByUserCreate(userEntity)));
+        return new Response(HttpStatus.OK, this.updateVerifiedAnswers(resumeRepository.findByUserCreate(userEntity, sortByCreationDate())));
+    }
+
+    private Sort sortByCreationDate(){
+        return Sort.by(Sort.Direction.DESC, "creationDate");
     }
 
     @Transactional(readOnly = true)
