@@ -1,5 +1,7 @@
 package com.sain.Model;
 
+import java.util.Date;
+
 public class RequestEntity {
 
     private Integer id;
@@ -7,6 +9,10 @@ public class RequestEntity {
     private String data;
 
     private String data1;
+
+    private Date startDate;
+
+    private Date endDate;
 
     public Integer getId() {
         return id;
@@ -30,5 +36,21 @@ public class RequestEntity {
 
     public void setData1(String data1) {
         this.data1 = data1;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 }

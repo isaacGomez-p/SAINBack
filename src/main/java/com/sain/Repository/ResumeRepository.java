@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -15,6 +16,10 @@ public interface ResumeRepository extends JpaRepository<ResumeEntity, Integer> {
     List<ResumeEntity> findByUserAssign(UserEntity userEntity, Sort sortable);
 
     List<ResumeEntity> findByUserCreate(UserEntity userEntity, Sort sortable);
+
+    List<ResumeEntity> findByCreationDateBetweenAndStatus(Date startDate, Date endDate, String status);
+
+    List<ResumeEntity> findByCreationDateBetween(Date startDate, Date endDate);
 
     @Query("SELECT count(u), u.userCreate.userId FROM ResumeEntity u WHERE u.recommendation = ?1 AND  u.userCreate.userId = ?2 GROUP BY u.userCreate.userId ORDER BY u.userCreate.userId")
     Long findByRecommendationAndUserCreateId(String recommendation, Integer userId);

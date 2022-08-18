@@ -12,10 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.FileNotFoundException;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.io.IOException;
+import java.util.*;
 
 @Service
 public class ReportsServiceImpl implements ReportsService {
@@ -56,6 +54,18 @@ public class ReportsServiceImpl implements ReportsService {
         }else{
             return new Response(HttpStatus.CONFLICT, "Error");
         }
+    }
+
+    @Transactional(readOnly = true)
+    public Response generateExcel(RequestEntity requestEntity) throws IOException {
+        List<ResumeEntity> resumeEntities = null;
+        if(requestEntity.getData1() == null || requestEntity.getData1().equals("")){
+            resumeEntities = resumeRepository.findByCreationDateBetween(requestEntity.getStartDate(), requestEntity.getEndDate());
+        } else {
+            resumeEntities = resumeRepository.findByCreationDateBetweenAndStatus(requestEntity.getStartDate(), requestEntity.getEndDate(), requestEntity.getData1());
+        }
+        String base64 = Base64.getEncoder().encodeToString(writeReportl.export(resumeEntities));
+        return new Response(HttpStatus.OK, "Report Generated", base64);
     }
 
     private String textReportNoTable (ResumeEntity resumeEntity){

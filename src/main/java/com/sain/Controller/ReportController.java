@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/report")
@@ -23,8 +24,13 @@ public class ReportController {
     }
 
     @PostMapping(value = "/generateNoTable")
-    public Response generateNoTable(@RequestBody RequestEntity requestEntity) throws JRException {
+    public Response generateNoTable(@RequestBody RequestEntity requestEntity) {
         return reportsService.generateReportWithoutTable(requestEntity);
+    }
+
+    @PostMapping(value = "/generateExcel")
+    public Response generateExcel(@RequestBody RequestEntity requestEntity) throws IOException {
+        return reportsService.generateExcel(requestEntity);
     }
 
 }
