@@ -3,13 +3,11 @@ package com.sain.Utils;
 import com.sain.Model.ResumeEntity;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.util.JRLoader;
-
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.*;
-
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
