@@ -64,6 +64,9 @@ public class ResumeEntity {
     @Column(name="creation_date")
     private Date creationDate;
 
+    @Column(name="assign_date")
+    private Date assignDate;
+
     @OneToMany(mappedBy="resumes", cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     private List<AnswerEntity> answerEntities;
 
@@ -209,5 +212,13 @@ public class ResumeEntity {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Date getAssignDate() {
+        return assignDate;
+    }
+
+    public void setAssignDate(Date assignDate) {
+        this.assignDate = assignDate;
     }
 }

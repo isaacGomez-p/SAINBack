@@ -46,6 +46,9 @@ public class ResumeServiceImpl implements ResumeService{
                 && resumeEntity.getAdminObservation() != null && !resumeEntity.getAdminObservation().equals("")){
             resumeEntity.setRecommendation(Constants.REC_FINISHED);
         }
+        if(resumeEntity.getUserAssign() != null && resumeEntity.getAssignDate() == null){
+            resumeEntity.setAssignDate(new Date());
+        }
         return new Response(HttpStatus.CREATED, resumeRepository.save(resumeEntity));
     }
 
